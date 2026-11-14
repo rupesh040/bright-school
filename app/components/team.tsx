@@ -10,24 +10,18 @@ const cardVisibility = ["", "hidden sm:block", "hidden lg:block", "hidden lg:blo
 export function Team({ content }: { content: TeamContent }) {
   const { id, heading, items, controls } = content;
   const [firstIndex, setFirstIndex] = useState(0);
-  const [clickedArrow, setClickedArrow] = useState<"prev" | "next" | null>(null);
 
   if (items.length === 0) return null;
 
   const activeIndex = firstIndex % items.length;
   const teachers = [...items.slice(activeIndex), ...items.slice(0, activeIndex)].slice(0, 4);
 
-  function moveBy(amount: number, direction: "prev" | "next") {
-    setClickedArrow(direction);
+  function moveBy(amount: number) {
     setFirstIndex((index) => (index + amount + items.length) % items.length);
   }
 
-  const baseArrowClass =
-    "absolute top-1/2 z-10 grid size-10 -translate-y-1/2 place-items-center rounded-full shadow-md cursor-pointer transition-all duration-200 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy";
-  const inactiveArrowClass =
-    "bg-white text-navy border border-slate-200/80 hover:bg-cream hover:border-gold/50";
-  const activeArrowClass =
-    "bg-gold text-navy border border-gold hover:bg-amber-300 shadow-gold/25";
+  const arrowBtnClass =
+    "absolute top-1/2 z-10 grid size-10 -translate-y-1/2 place-items-center rounded-full bg-gold text-navy border border-gold shadow-md shadow-gold/20 cursor-pointer transition-all duration-200 hover:bg-amber-300 hover:scale-105 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy";
 
   return (
     <section id={id} className="relative isolate scroll-mt-28 overflow-hidden bg-white py-12 sm:py-15 lg:py-16">
@@ -76,10 +70,8 @@ export function Team({ content }: { content: TeamContent }) {
                     type="button"
                     aria-label={controls.previous}
                     aria-controls={`${id}-cards`}
-                    onClick={() => moveBy(-1, "prev")}
-                    className={`${baseArrowClass} left-0 sm:left-1 lg:left-2 ${
-                      clickedArrow === "prev" ? activeArrowClass : inactiveArrowClass
-                    }`}
+                    onClick={() => moveBy(-1)}
+                    className={`${arrowBtnClass} left-0 sm:left-1 lg:left-2`}
                   >
                     <Icon name="chevron-left" className="size-5" />
                   </button>
@@ -87,10 +79,8 @@ export function Team({ content }: { content: TeamContent }) {
                     type="button"
                     aria-label={controls.next}
                     aria-controls={`${id}-cards`}
-                    onClick={() => moveBy(1, "next")}
-                    className={`${baseArrowClass} right-0 sm:right-1 lg:right-2 ${
-                      clickedArrow === "next" ? activeArrowClass : inactiveArrowClass
-                    }`}
+                    onClick={() => moveBy(1)}
+                    className={`${arrowBtnClass} right-0 sm:right-1 lg:right-2`}
                   >
                     <Icon name="chevron-right" className="size-5" />
                   </button>
