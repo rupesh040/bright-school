@@ -1,0 +1,656 @@
+{
+  "School": {
+    "metadata": {
+      "title": "Bright Future International School",
+      "description": "Bright Future International School is a premier institution committed to academic excellence, character building and the holistic development of every student.",
+      "language": "en"
+    },
+    "templateComponents": {
+      "template-1": {
+        "shared": {
+          "Topbar": "SchoolTopbar1",
+          "Header": "SchoolHeader1",
+          "Footer": "SchoolFooter1"
+        },
+        "pages": {
+          "home": {
+            "components": [
+              {
+                "key": "Banner",
+                "component": "SchoolBanner1"
+              },
+              {
+                "key": "About",
+                "component": "SchoolAbout1"
+              },
+              {
+                "key": "Academics",
+                "component": "SchoolAcademics1"
+              },
+              {
+                "key": "Facilities",
+                "component": "SchoolFacilities1"
+              },
+              {
+                "key": "Team",
+                "component": "SchoolTeam1"
+              },
+              {
+                "key": "Testimonial",
+                "component": "SchoolTestimonial1"
+              },
+              {
+                "key": "Gallery",
+                "component": "SchoolGallery1"
+              },
+              {
+                "key": "FAQ",
+                "component": "SchoolFAQ1"
+              },
+              {
+                "key": "Contact",
+                "component": "SchoolContact1"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "sections": {
+      "Topbar": {
+        "variants": {
+          "SchoolTopbar1": {
+            "items": [
+              {
+                "label": "Our Location",
+                "value": "Libda Fiecke 3050 S First Street, Ste 207 Garland, TX 75041 United States",
+                "icon": "pin",
+                "href": "https://www.google.com/maps/search/?api=1&query=Riverside+Road+Sector+12+Lucknow"
+              },
+              {
+                "label": "Call Us",
+                "value": "+1 000-000-000",
+                "icon": "phone",
+                "href": "tel:+1000-000-000"
+              },
+              {
+                "label": "Email Us",
+                "value": "info@xyz.com",
+                "icon": "mail",
+                "href": "mailto:info@xyz.com"
+              }
+            ],
+            "socialLabel": "Follow Us:",
+            "social": [
+              {
+                "name": "Facebook",
+                "icon": "facebook"
+              },
+              {
+                "name": "Instagram",
+                "icon": "instagram"
+              },
+              {
+                "name": "YouTube",
+                "icon": "youtube"
+              },
+              {
+                "name": "LinkedIn",
+                "icon": "linkedin"
+              }
+            ]
+          }
+        }
+      },
+      "Header": {
+        "variants": {
+          "SchoolHeader1": {
+            "logo": {
+              "src": "/school/emblem.webp",
+              "alt": ""
+            },
+            "name": "Bright Future",
+            "subtitle": "International School",
+            "links": [
+              {
+                "name": "Home",
+                "href": "#home"
+              },
+              {
+                "name": "About Us",
+                "href": "#about"
+              },
+              {
+                "name": "Academics",
+                "href": "#academics"
+              },
+              {
+                "name": "Our Facilities",
+                "href": "#facilities"
+              },
+              {
+                "name": "Testimonials",
+                "href": "#testimonials"
+              },
+              {
+                "name": "Gallery",
+                "href": "#gallery"
+              },
+              {
+                "name": "FAQs",
+                "href": "#faq"
+              }
+            ],
+            "action": {
+              "name": "Contact Us",
+              "href": "#contact"
+            },
+            "navigationLabel": "Main navigation",
+            "openMenu": "Open navigation",
+            "closeMenu": "Close navigation",
+            "skipLabel": "Skip to main content"
+          }
+        }
+      },
+      "Banner": {
+        "variants": {
+          "SchoolBanner1": {
+            "id": "home",
+            "eyebrow": "Welcome to",
+            "title": "Bright Future",
+            "highlight": "International School",
+            "images": [
+              {
+                "src": "/school/hero.webp",
+                "alt": "Bright Future students standing in the school courtyard"
+              },
+              {
+                "src": "/school/gallery-football.webp",
+                "alt": "Students playing football on the school sports ground"
+              }
+            ],
+            "controls": {
+              "label": "School highlights",
+              "previous": "Previous slide",
+              "next": "Next slide",
+              "showItem": "Show slide {number}"
+            }
+          }
+        }
+      },
+      "About": {
+        "variants": {
+          "SchoolAbout1": {
+            "id": "about",
+            "heading": {
+              "eyebrow": "About Our School",
+              "icon": "cap",
+              "title": "A Place to Learn, Grow and",
+              "highlight": "Succeed",
+              "description": "Bright Future International School is a premier institution committed to academic excellence, character building and the holistic development of every student."
+            },
+            "images": {
+              "boy": {
+                "src": "/school/about-boy.webp",
+                "alt": "A student smiling at his classroom desk"
+              },
+              "lab": {
+                "src": "/school/about-lab.webp",
+                "alt": "A student using a microscope in the science laboratory"
+              },
+              "girl": {
+                "src": "/school/about-girl.webp",
+                "alt": "A student holding books in the school courtyard"
+              }
+            },
+            "values": [
+              {
+                "title": "Our Mission",
+                "icon": "target",
+                "description": "To provide a nurturing and inclusive learning environment that empowers students with knowledge, values and essential life skills."
+              },
+              {
+                "title": "Our Vision",
+                "icon": "eye",
+                "description": "To be a leading school that inspires lifelong learning, builds confident individuals and creates responsible global citizens."
+              }
+            ]
+          }
+        }
+      },
+      "Academics": {
+        "variants": {
+          "SchoolAcademics1": {
+            "id": "academics",
+            "heading": {
+              "eyebrow": "Our Academic Programs",
+              "icon": "cap",
+              "title": "Comprehensive Learning for",
+              "highlight": "Every Stage",
+              "description": "A well-structured curriculum designed to build a strong foundation, encourage curiosity and prepare students for future success."
+            },
+            "actionLabel": "Learn More",
+            "items": [
+              {
+                "title": "Pre-Primary",
+                "description": "A joyful and safe start to learning through play, creativity and exploration.",
+                "image": {
+                  "src": "/school/program-pre-primary.webp",
+                  "alt": "A young student smiling in a colorful classroom"
+                },
+                "icon": "blocks",
+                "tone": "rose",
+                "href": "#contact"
+              },
+              {
+                "title": "Primary School",
+                "description": "Building strong academic skills, good habits and confidence for a bright future.",
+                "image": {
+                  "src": "/school/program-primary.webp",
+                  "alt": "A primary school student at his desk"
+                },
+                "icon": "book",
+                "tone": "amber",
+                "href": "#contact"
+              },
+              {
+                "title": "Middle School",
+                "description": "A balanced focus on academics, life skills and personality development.",
+                "image": {
+                  "src": "/school/program-middle.webp",
+                  "alt": "A middle school student in a classroom"
+                },
+                "icon": "flask",
+                "tone": "mint",
+                "href": "#contact"
+              },
+              {
+                "title": "Senior Secondary",
+                "description": "Preparing students for higher education and successful career pathways.",
+                "image": {
+                  "src": "/school/program-senior.webp",
+                  "alt": "A senior secondary student on campus"
+                },
+                "icon": "cap",
+                "tone": "lilac",
+                "href": "#contact"
+              }
+            ]
+          }
+        }
+      },
+      "Facilities": {
+        "variants": {
+          "SchoolFacilities1": {
+            "id": "facilities",
+            "heading": {
+              "eyebrow": "Our Facilities",
+              "icon": "school",
+              "title": "World-Class Facilities for",
+              "highlight": "Holistic Learning",
+              "description": "A safe, modern and technology-enabled campus that provides the perfect environment for learning, creativity, sports and overall development."
+            },
+            "items": [
+              {
+                "title": "Smart Classrooms",
+                "image": {
+                  "src": "/school/facility-classroom.webp",
+                  "alt": "A classroom with an interactive display"
+                },
+                "icon": "monitor"
+              },
+              {
+                "title": "Science Laboratories",
+                "image": {
+                  "src": "/school/facility-science.webp",
+                  "alt": "A microscope and glassware in the school science laboratory"
+                },
+                "icon": "flask"
+              },
+              {
+                "title": "Library",
+                "image": {
+                  "src": "/school/facility-library.webp",
+                  "alt": "Library bookshelves and sunny reading tables"
+                },
+                "icon": "book"
+              },
+              {
+                "title": "Sports Ground",
+                "image": {
+                  "src": "/school/facility-sports.webp",
+                  "alt": "A grass football field surrounded by a running track"
+                },
+                "icon": "ball"
+              },
+              {
+                "title": "Computer Lab",
+                "image": {
+                  "src": "/school/facility-computer.webp",
+                  "alt": "A row of desktop computers in the computer lab"
+                },
+                "icon": "laptop"
+              },
+              {
+                "title": "Transportation",
+                "image": {
+                  "src": "/school/facility-bus.webp",
+                  "alt": "Yellow school buses lined up outside the school"
+                },
+                "icon": "bus"
+              }
+            ]
+          }
+        }
+      },
+      "Team": {
+        "variants": {
+          "SchoolTeam1": {
+            "id": "teachers",
+            "heading": {
+              "eyebrow": "Our Teachers",
+              "icon": "teachers",
+              "title": "Meet Our Experienced &",
+              "highlight": "Dedicated Teachers",
+              "description": "A team of qualified, passionate and caring educators who guide, support and inspire every student to achieve their best."
+            },
+            "items": [
+              {
+                "name": "Mrs. Neha Sharma",
+                "designation": "English Teacher",
+                "image": {
+                  "src": "/school/teacher-neha.webp",
+                  "alt": ""
+                },
+                "icon": "book"
+              },
+              {
+                "name": "Mr. Arjun Mehta",
+                "designation": "Mathematics Teacher",
+                "image": {
+                  "src": "/school/teacher-arjun.webp",
+                  "alt": ""
+                },
+                "icon": "calculator"
+              },
+              {
+                "name": "Mrs. Pooja Verma",
+                "designation": "Science Teacher",
+                "image": {
+                  "src": "/school/teacher-pooja.webp",
+                  "alt": ""
+                },
+                "icon": "flask"
+              },
+              {
+                "name": "Mr. Rohan Singh",
+                "designation": "Computer Teacher",
+                "image": {
+                  "src": "/school/teacher-rohan.webp",
+                  "alt": ""
+                },
+                "icon": "laptop"
+              }
+            ],
+            "controls": {
+              "label": "School teachers",
+              "previous": "Previous teacher",
+              "next": "Next teacher",
+              "showItem": "Show teacher {number}"
+            }
+          }
+        }
+      },
+      "Testimonial": {
+        "variants": {
+          "SchoolTestimonial1": {
+            "id": "testimonials",
+            "heading": {
+              "eyebrow": "Testimonials",
+              "icon": "quote",
+              "title": "What Our",
+              "highlight": "Students & Parents",
+              "suffix": "Say",
+              "description": "Real experiences and heartfelt words from our students and parents who are part of our learning journey."
+            },
+            "ratingLabel": "{rating} out of 5 stars",
+            "items": [
+              {
+                "name": "Mrs. Anjali Verma",
+                "designation": "Parent of Class VI Student",
+                "quote": "The school provides an excellent learning environment with caring teachers and modern facilities. My child has shown great improvement in both academics and confidence.",
+                "rating": 5,
+                "image": {
+                  "src": "/school/testimonial-anjali.webp",
+                  "alt": ""
+                }
+              }
+            ],
+            "controls": {
+              "label": "Student and parent testimonials",
+              "previous": "Previous testimonial",
+              "next": "Next testimonial",
+              "showItem": "Show testimonial {number}"
+            }
+          }
+        }
+      },
+      "Gallery": {
+        "variants": {
+          "SchoolGallery1": {
+            "id": "gallery",
+            "heading": {
+              "eyebrow": "Our Gallery",
+              "icon": "camera",
+              "title": "Campus Life in",
+              "highlight": "Pictures",
+              "description": "A collection of memorable moments, events and everyday activities from our campus."
+            },
+            "items": [
+              {
+                "layout": "campus",
+                "image": {
+                  "src": "/school/gallery-campus.webp",
+                  "alt": "The front entrance to the school campus"
+                }
+              },
+              {
+                "layout": "group",
+                "image": {
+                  "src": "/school/gallery-group.webp",
+                  "alt": "Students working together on a laptop in the library"
+                }
+              },
+              {
+                "layout": "lab",
+                "image": {
+                  "src": "/school/gallery-lab.webp",
+                  "alt": "A student conducting an experiment in the lab"
+                }
+              },
+              {
+                "layout": "team",
+                "image": {
+                  "src": "/school/gallery-team.webp",
+                  "alt": "The school football team smiling together"
+                }
+              },
+              {
+                "layout": "football",
+                "image": {
+                  "src": "/school/gallery-football.webp",
+                  "alt": "Students playing football on the sports ground"
+                }
+              },
+              {
+                "layout": "reading",
+                "image": {
+                  "src": "/school/gallery-reading.webp",
+                  "alt": "A student reading a book in the library"
+                }
+              },
+              {
+                "layout": "dance",
+                "image": {
+                  "src": "/school/gallery-dance.webp",
+                  "alt": "Students performing a traditional dance on stage"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "FAQ": {
+        "variants": {
+          "SchoolFAQ1": {
+            "id": "faq",
+            "heading": {
+              "icon": "cap",
+              "title": "Frequently Asked",
+              "highlight": "Questions",
+              "description": "Find quick answers to common questions about our school, admissions, facilities and campus life."
+            },
+            "items": [
+              {
+                "question": "What is the admission process?",
+                "answer": "The admission process includes filling out an application form, submitting the required documents and an interaction session with the student and parents."
+              },
+              {
+                "question": "What are the age criteria for admission?",
+                "answer": "Contact the admissions team for the age criteria for the grade you’re applying to."
+              },
+              {
+                "question": "What facilities are available on the campus?",
+                "answer": "The campus has smart classrooms, science laboratories, a library, a sports ground and a computer lab."
+              },
+              {
+                "question": "Do you offer transportation services?",
+                "answer": "Yes, the school offers transportation. Contact the school for details."
+              },
+              {
+                "question": "What co-curricular activities are offered?",
+                "answer": "Campus activities include sports such as football and cultural performances such as dance."
+              }
+            ]
+          }
+        }
+      },
+      "Contact": {
+        "variants": {
+          "SchoolContact1": {
+            "id": "contact",
+            "heading": {
+              "icon": "mail",
+              "title": "Contact",
+              "highlight": "Us",
+              "description": "Have questions or need assistance? Get in touch with our team today."
+            },
+            "details": {
+              "title": "Get in Touch",
+              "description": "We’re here to help you with admissions, campus information and any other queries.",
+              "items": [
+                {
+                  "label": "Our Location",
+                  "value": "Libda Fiecke 3050 S First Street, Ste 207 Garland, TX 75041 United States",
+                  "icon": "pin",
+                  "href": "https://www.google.com/maps/search/?api=1&query=Sector+107+Noida+Uttar+Pradesh+201301"
+                },
+                {
+                  "label": "Call Us",
+                  "value": "+1 000-000-000",
+                  "icon": "phone",
+                  "href": "tel:+1000-000-000"
+                },
+                {
+                  "label": "Email Us",
+                  "value": "info@xyz.com",
+                  "icon": "mail",
+                  "href": "mailto:info@xyz.com"
+                }
+              ]
+            },
+            "form": {
+              "title": "Send Us a Message",
+              "fields": {
+                "name": "Your Name",
+                "email": "Your Email",
+                "phone": "Your Phone",
+                "inquiry": "Select Inquiry",
+                "message": "Your Message"
+              },
+              "options": [
+                "Admissions",
+                "Campus Information",
+                "Other Queries"
+              ],
+              "submitLabel": "Submit Now",
+              "recipient": "info@xyz.com",
+              "feedback": "Review and send the draft in your email app."
+            }
+          }
+        }
+      },
+      "Footer": {
+        "variants": {
+          "SchoolFooter1": {
+            "logo": {
+              "src": "/school/emblem-footer.webp",
+              "alt": ""
+            },
+            "description": "A nurturing and inclusive learning environment where every child can grow, learn and achieve a brighter future.",
+            "quickLinksLabel": "Quick Links",
+            "quickLinks": [
+              {
+                "name": "Home",
+                "href": "#home"
+              },
+              {
+                "name": "About Us",
+                "href": "#about"
+              },
+              {
+                "name": "Our Facilities",
+                "href": "#facilities"
+              },
+              {
+                "name": "Testimonials",
+                "href": "#testimonials"
+              },
+              {
+                "name": "Gallery",
+                "href": "#gallery"
+              },
+              {
+                "name": "FAQs",
+                "href": "#faq"
+              }
+            ],
+            "contactLabel": "Contact Info",
+            "items": [
+              {
+                "label": "Our Location",
+                "value": "Libda Fiecke 3050 S First Street, Ste 207 Garland, TX 75041 United States",
+                "icon": "pin",
+                "href": "https://www.google.com/maps/search/?api=1&query=Riverside+Road+Sector+12+Lucknow"
+              },
+              {
+                "label": "Call Us",
+                "value": "+1 000-000-000",
+                "icon": "phone",
+                "href": "tel:+1000-000-000"
+              },
+              {
+                "label": "Email Us",
+                "value": "info@xyz.com",
+                "icon": "mail",
+                "href": "mailto:info@xyz.com"
+              }
+            ],
+            "socialLabel": "Follow Us",
+            "copyright": "© 2026 Bright Future International School. All Rights Reserved."
+          }
+        }
+      }
+    }
+  }
+}
