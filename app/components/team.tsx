@@ -5,23 +5,29 @@ import { useState } from "react";
 import type { TeamContent } from "../type";
 import { Container, Icon, Reveal, SectionHeading } from "./ui";
 
-const previousButton = "-left-1 bg-white text-navy hover:bg-cream sm:-left-4 xl:-left-5";
-const nextButton = "-right-1 bg-gold text-navy hover:bg-amber-400 sm:-right-4 xl:-right-5";
-const arrowButton = "absolute top-1/2 z-10 grid size-10 -translate-y-1/2 place-items-center rounded-full shadow-md transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy";
 const cardVisibility = ["", "hidden sm:block", "hidden lg:block", "hidden lg:block"];
 
 export function Team({ content }: { content: TeamContent }) {
   const { id, heading, items, controls } = content;
   const [firstIndex, setFirstIndex] = useState(0);
+  const [clickedArrow, setClickedArrow] = useState<"prev" | "next" | null>(null);
 
   if (items.length === 0) return null;
 
   const activeIndex = firstIndex % items.length;
   const teachers = [...items.slice(activeIndex), ...items.slice(0, activeIndex)].slice(0, 4);
 
-  function moveBy(amount: number) {
+  function moveBy(amount: number, direction: "prev" | "next") {
+    setClickedArrow(direction);
     setFirstIndex((index) => (index + amount + items.length) % items.length);
   }
+
+  const baseArrowClass =
+    "absolute top-1/2 z-10 grid size-10 -translate-y-1/2 place-items-center rounded-full shadow-md cursor-pointer transition-all duration-200 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy";
+  const inactiveArrowClass =
+    "bg-white text-navy border border-slate-200/80 hover:bg-cream hover:border-gold/50";
+  const activeArrowClass =
+    "bg-gold text-navy border border-gold hover:bg-amber-300 shadow-gold/25";
 
   return (
     <section id={id} className="relative isolate scroll-mt-28 overflow-hidden bg-white py-12 sm:py-15 lg:py-16">
@@ -33,7 +39,7 @@ export function Team({ content }: { content: TeamContent }) {
         </Reveal>
         <Reveal className="mt-8 lg:mt-10">
           <div role="group" aria-label={controls.label}>
-            <div className="relative px-4 sm:px-2">
+            <div className="relative px-10 sm:px-12 lg:px-14">
               <div id={`${id}-cards`} className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 {teachers.map((teacher, index) => (
                   <article
@@ -66,10 +72,26 @@ export function Team({ content }: { content: TeamContent }) {
 
               {items.length > 1 && (
                 <>
-                  <button type="button" aria-label={controls.previous} aria-controls={`${id}-cards`} onClick={() => moveBy(-1)} className={`${arrowButton} ${previousButton}`}>
+                  <button
+                    type="button"
+                    aria-label={controls.previous}
+                    aria-controls={`${id}-cards`}
+                    onClick={() => moveBy(-1, "prev")}
+                    className={`${baseArrowClass} left-0 sm:left-1 lg:left-2 ${
+                      clickedArrow === "prev" ? activeArrowClass : inactiveArrowClass
+                    }`}
+                  >
                     <Icon name="chevron-left" className="size-5" />
                   </button>
-                  <button type="button" aria-label={controls.next} aria-controls={`${id}-cards`} onClick={() => moveBy(1)} className={`${arrowButton} ${nextButton}`}>
+                  <button
+                    type="button"
+                    aria-label={controls.next}
+                    aria-controls={`${id}-cards`}
+                    onClick={() => moveBy(1, "next")}
+                    className={`${baseArrowClass} right-0 sm:right-1 lg:right-2 ${
+                      clickedArrow === "next" ? activeArrowClass : inactiveArrowClass
+                    }`}
+                  >
                     <Icon name="chevron-right" className="size-5" />
                   </button>
                 </>

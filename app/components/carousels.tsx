@@ -71,7 +71,25 @@ export function Hero({ content }: { content: BannerContent }) {
 export function Testimonials({ content }: { content: TestimonialContent }) {
   const { id, heading, ratingLabel, items, controls } = content;
   const [active, setActive] = useState(0);
+  const [clickedArrow, setClickedArrow] = useState<"prev" | "next" | null>(null);
   const item = items[active];
+
+  function prevSlide() {
+    setClickedArrow("prev");
+    setActive((curr) => (curr + items.length - 1) % items.length);
+  }
+
+  function nextSlide() {
+    setClickedArrow("next");
+    setActive((curr) => (curr + 1) % items.length);
+  }
+
+  const baseBtn =
+    "grid cursor-pointer place-items-center rounded-full shadow-sm transition-all duration-200 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy";
+  const inactiveBtn =
+    "border border-slate-200/80 bg-white text-navy hover:bg-cream hover:border-gold/50";
+  const activeBtn =
+    "border border-gold bg-gold text-navy hover:bg-amber-300 shadow-gold/25";
 
   return (
     <section id={id} className="relative isolate scroll-mt-28 overflow-hidden bg-white py-14 sm:py-16 lg:py-18">
@@ -107,15 +125,39 @@ export function Testimonials({ content }: { content: TestimonialContent }) {
             </div>
             {items.length > 1 && (
               <div aria-label={controls.label} className="mt-6 flex items-center justify-center gap-4">
-                <button type="button" aria-label={controls.previous} onClick={() => setActive((active + items.length - 1) % items.length)} className="grid size-10 cursor-pointer place-items-center rounded-full border border-navy/10 bg-white shadow-sm hover:bg-cream">
+                <button
+                  type="button"
+                  aria-label={controls.previous}
+                  onClick={prevSlide}
+                  className={`size-10 ${baseBtn} ${
+                    clickedArrow === "prev" ? activeBtn : inactiveBtn
+                  }`}
+                >
                   <Icon name="chevron-left" className="size-5" />
                 </button>
                 {items.map(({ name }, index) => (
-                  <button type="button" key={name} aria-label={controls.showItem.replace("{number}", String(index + 1))} aria-current={index === active ? "true" : undefined} onClick={() => setActive(index)} className="grid size-7 cursor-pointer place-items-center rounded-full">
-                    <span className={`size-2.5 rounded-full ${index === active ? "bg-gold" : "bg-slate-300"}`} />
+                  <button
+                    type="button"
+                    key={name}
+                    aria-label={controls.showItem.replace("{number}", String(index + 1))}
+                    aria-current={index === active ? "true" : undefined}
+                    onClick={() => {
+                      setClickedArrow(null);
+                      setActive(index);
+                    }}
+                    className="grid size-7 cursor-pointer place-items-center rounded-full"
+                  >
+                    <span className={`size-2.5 rounded-full transition-colors ${index === active ? "bg-gold" : "bg-slate-300 hover:bg-amber-300"}`} />
                   </button>
                 ))}
-                <button type="button" aria-label={controls.next} onClick={() => setActive((active + 1) % items.length)} className="grid size-10 cursor-pointer place-items-center rounded-full bg-gold hover:bg-amber-300">
+                <button
+                  type="button"
+                  aria-label={controls.next}
+                  onClick={nextSlide}
+                  className={`size-10 ${baseBtn} ${
+                    clickedArrow === "next" ? activeBtn : inactiveBtn
+                  }`}
+                >
                   <Icon name="chevron-right" className="size-5" />
                 </button>
               </div>

@@ -84,19 +84,23 @@
             "social": [
               {
                 "name": "Facebook",
-                "icon": "facebook"
+                "icon": "facebook",
+                "href": "https://facebook.com"
               },
               {
                 "name": "Instagram",
-                "icon": "instagram"
+                "icon": "instagram",
+                "href": "https://instagram.com"
               },
               {
                 "name": "YouTube",
-                "icon": "youtube"
+                "icon": "youtube",
+                "href": "https://youtube.com"
               },
               {
                 "name": "LinkedIn",
-                "icon": "linkedin"
+                "icon": "linkedin",
+                "href": "https://linkedin.com"
               }
             ]
           }
@@ -127,6 +131,10 @@
               {
                 "name": "Our Facilities",
                 "href": "#facilities"
+              },
+              {
+                "name": "Teachers",
+                "href": "#teachers"
               },
               {
                 "name": "Testimonials",
@@ -165,7 +173,7 @@
                 "alt": "Bright Future students standing in the school courtyard"
               },
               {
-                "src": "/school/gallery-football.webp",
+                "src": "/school/gallery-footballs.webp",
                 "alt": "Students playing football on the school sports ground"
               }
             ],
@@ -422,7 +430,17 @@
                 "rating": 5,
                 "image": {
                   "src": "/school/testimonial-anjali.webp",
-                  "alt": ""
+                  "alt": "Mrs. Anjali Verma"
+                }
+              },
+              {
+                "name": "Mr. Rajesh Sharma",
+                "designation": "Parent of Class IX Student",
+                "quote": "The dedicated faculty and holistic curriculum have been transformative for our son. He has flourished not only in academics but also in sports, leadership, and creative arts.",
+                "rating": 5,
+                "image": {
+                  "src": "/school/testimonial-rajesh.webp",
+                  "alt": "Mr. Rajesh Sharma"
                 }
               }
             ],
@@ -450,49 +468,49 @@
               {
                 "layout": "campus",
                 "image": {
-                  "src": "/school/gallery-campus.webp",
+                  "src": "/school/gallery-campuss.webp",
                   "alt": "The front entrance to the school campus"
                 }
               },
               {
                 "layout": "group",
                 "image": {
-                  "src": "/school/gallery-group.webp",
+                  "src": "/school/gallery-groups.webp",
                   "alt": "Students working together on a laptop in the library"
                 }
               },
               {
                 "layout": "lab",
                 "image": {
-                  "src": "/school/gallery-lab.webp",
+                  "src": "/school/gallery-labs.webp",
                   "alt": "A student conducting an experiment in the lab"
                 }
               },
               {
                 "layout": "team",
                 "image": {
-                  "src": "/school/gallery-team.webp",
+                  "src": "/school/gallery-teams.webp",
                   "alt": "The school football team smiling together"
                 }
               },
               {
                 "layout": "football",
                 "image": {
-                  "src": "/school/gallery-football.webp",
+                  "src": "/school/gallery-footballs.webp",
                   "alt": "Students playing football on the sports ground"
                 }
               },
               {
                 "layout": "reading",
                 "image": {
-                  "src": "/school/gallery-reading.webp",
+                  "src": "/school/gallery-readings.webp",
                   "alt": "A student reading a book in the library"
                 }
               },
               {
                 "layout": "dance",
                 "image": {
-                  "src": "/school/gallery-dance.webp",
+                  "src": "/school/gallery-dances.webp",
                   "alt": "Students performing a traditional dance on stage"
                 }
               }
@@ -613,6 +631,10 @@
                 "href": "#facilities"
               },
               {
+                "name": "Teachers",
+                "href": "#teachers"
+              },
+              {
                 "name": "Testimonials",
                 "href": "#testimonials"
               },
@@ -647,7 +669,7 @@
               }
             ],
             "socialLabel": "Follow Us",
-            "copyright": "© 2026 Bright Future International School. All Rights Reserved."
+            "copyright": "© 2026 All Rights Reserved. Powered by Lestow"
           }
         }
       }

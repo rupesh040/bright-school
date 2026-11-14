@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import type {
   AboutContent,
   AcademicsContent,
@@ -15,7 +18,7 @@ export function About({ content }: { content: AboutContent }) {
       <div aria-hidden="true" className="pointer-events-none absolute -top-16 -right-13 size-52 rounded-full bg-cream/75" />
       <div aria-hidden="true" className="pointer-events-none absolute -bottom-24 -left-19 h-48 w-70 rotate-24 rounded-[45%] bg-cream" />
       <Container className="grid items-center gap-12 lg:grid-cols-[0.82fr_1.1fr] xl:gap-16">
-        <Reveal className="relative mx-auto w-full max-w-[31rem] sm:w-[85%] lg:w-full">
+        <Reveal className="order-2 lg:order-1 relative mx-auto w-full max-w-[31rem] sm:w-[85%] lg:w-full">
           <div aria-hidden="true" className="absolute -top-6 -left-3 h-25 w-31 bg-[radial-gradient(circle,#0a2952_1.35px,transparent_1.6px)] bg-size-[13px_13px] opacity-25 sm:-left-5" />
           <div className="relative grid grid-cols-[0.7fr_1fr] gap-3 sm:gap-4">
             <div className="grid gap-3 sm:gap-4">
@@ -59,7 +62,7 @@ export function About({ content }: { content: AboutContent }) {
           </div>
         </Reveal>
 
-        <Reveal>
+        <Reveal className="order-1 lg:order-2">
           <SectionHeading heading={heading} align="left" />
           <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:mt-9">
             {values.map((value, index) => (
@@ -183,6 +186,34 @@ const galleryLayout: Record<GalleryContent["items"][number]["layout"], string> =
 
 export function Gallery({ content }: { content: GalleryContent }) {
   const { id, heading, items } = content;
+  const [selectedImage, setSelectedImage] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (selectedImage === null) return;
+
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        setSelectedImage(null);
+      } else if (e.key === "ArrowLeft") {
+        setSelectedImage((curr) =>
+          curr !== null ? (curr + items.length - 1) % items.length : null
+        );
+      } else if (e.key === "ArrowRight") {
+        setSelectedImage((curr) =>
+          curr !== null ? (curr + 1) % items.length : null
+        );
+      }
+    }
+
+    document.addEventListener("keydown", onKeyDown);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [selectedImage, items.length]);
 
   return (
     <section id={id} className="scroll-mt-28 bg-[#faf6f1] py-12 sm:py-15 lg:py-16">
@@ -191,8 +222,14 @@ export function Gallery({ content }: { content: GalleryContent }) {
           <SectionHeading heading={heading} variant="line" />
         </Reveal>
         <Reveal className="mt-8 grid grid-cols-2 auto-rows-[clamp(5.75rem,24vw,10rem)] gap-2 sm:gap-2.5 lg:mt-9 lg:aspect-[2.78] lg:grid-cols-[25fr_21fr_35fr_17fr] lg:grid-rows-6">
-          {items.map(({ image, layout }) => (
-            <div key={image.src} className={`group relative isolate overflow-hidden rounded-xl bg-cream ring-2 ring-white sm:rounded-2xl ${galleryLayout[layout]}`}>
+          {items.map(({ image, layout }, index) => (
+            <button
+              type="button"
+              key={image.src}
+              onClick={() => setSelectedImage(index)}
+              aria-label={`View photo: ${image.alt || "Campus gallery image"}`}
+              className={`group relative isolate block w-full overflow-hidden rounded-xl bg-cream ring-2 ring-white cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-ink sm:rounded-2xl text-left ${galleryLayout[layout]}`}
+            >
               <Image
                 src={image.src}
                 alt={image.alt}
@@ -200,10 +237,91 @@ export function Gallery({ content }: { content: GalleryContent }) {
                 sizes="(max-width: 1023px) 95vw, 50vw"
                 className="object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-105"
               />
-            </div>
+              <div className="absolute inset-0 flex items-center justify-center bg-navy/30 opacity-0 backdrop-blur-[2px] transition-all duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
+                <span className="grid size-11 place-items-center rounded-full bg-white/95 text-navy shadow-lg transition-transform duration-300 group-hover:scale-110">
+                  <Icon name="eye" className="size-5" />
+                </span>
+              </div>
+            </button>
           ))}
         </Reveal>
       </Container>
+
+      {/* Lightbox Modal */}
+      {selectedImage !== null && items[selectedImage] && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Image gallery preview"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-navy/90 p-4 backdrop-blur-md animate-fade sm:p-6"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div
+            className="relative flex flex-col max-h-[92vh] max-w-5xl w-full items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header controls: Counter & Close button */}
+            <div className="flex w-full items-center justify-between pb-3 text-white">
+              <span className="text-xs font-semibold uppercase tracking-wider text-white/80 sm:text-sm">
+                Image {selectedImage + 1} of {items.length}
+              </span>
+              <button
+                type="button"
+                onClick={() => setSelectedImage(null)}
+                aria-label="Close image preview"
+                className="grid size-10 cursor-pointer place-items-center rounded-full bg-white/10 text-white transition hover:bg-white/25 active:scale-95 focus-visible:outline-2 focus-visible:outline-white"
+              >
+                <Icon name="close" className="size-6" />
+              </button>
+            </div>
+
+            {/* Main image viewer with side navigation arrows */}
+            <div className="relative flex aspect-[16/10] w-full max-h-[75vh] items-center justify-center overflow-hidden rounded-2xl bg-black/40 ring-1 ring-white/10">
+              <Image
+                src={items[selectedImage].image.src}
+                alt={items[selectedImage].image.alt}
+                fill
+                priority
+                className="object-contain"
+                sizes="(max-width: 1200px) 95vw, 1100px"
+              />
+
+              {/* Prev / Next controls */}
+              <button
+                type="button"
+                onClick={() =>
+                  setSelectedImage((curr) =>
+                    curr !== null ? (curr + items.length - 1) % items.length : null
+                  )
+                }
+                aria-label="Previous image"
+                className="absolute left-3 top-1/2 -translate-y-1/2 grid size-11 cursor-pointer place-items-center rounded-full bg-white/85 text-navy shadow-lg backdrop-blur-xs transition hover:bg-gold hover:text-navy active:scale-95 focus-visible:outline-2 focus-visible:outline-navy sm:left-4"
+              >
+                <Icon name="chevron-left" className="size-6" />
+              </button>
+              <button
+                type="button"
+                onClick={() =>
+                  setSelectedImage((curr) =>
+                    curr !== null ? (curr + 1) % items.length : null
+                  )
+                }
+                aria-label="Next image"
+                className="absolute right-3 top-1/2 -translate-y-1/2 grid size-11 cursor-pointer place-items-center rounded-full bg-white/85 text-navy shadow-lg backdrop-blur-xs transition hover:bg-gold hover:text-navy active:scale-95 focus-visible:outline-2 focus-visible:outline-navy sm:right-4"
+              >
+                <Icon name="chevron-right" className="size-6" />
+              </button>
+            </div>
+
+            {/* Caption */}
+            {items[selectedImage].image.alt && (
+              <p className="mt-3 text-center text-sm font-medium text-white/90 sm:text-base">
+                {items[selectedImage].image.alt}
+              </p>
+            )}
+          </div>
+        </div>
+      )}
     </section>
   );
 }

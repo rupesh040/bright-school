@@ -9,21 +9,31 @@ const socialColors: Partial<Record<SocialLink["icon"], string>> = {
   linkedin: "bg-[#086da7]",
 };
 
+const defaultSocialUrls: Record<string, string> = {
+  facebook: "https://facebook.com",
+  instagram: "https://instagram.com",
+  youtube: "https://youtube.com",
+  linkedin: "https://linkedin.com",
+};
+
 function SocialIcons({ links }: { links: SocialLink[] }) {
   return (
     <ul className="flex items-center gap-2.5">
       {links.map(({ name, icon, href }) => {
         const classes = `grid size-6 place-items-center rounded-full text-white ${socialColors[icon] ?? "bg-slate-700"}`;
         const symbol = <Icon name={icon} className="size-[0.95rem]" />;
+        const targetUrl = href || defaultSocialUrls[icon] || "#";
         return (
           <li key={name}>
-            {href ? (
-              <a href={href} aria-label={name} className={`${classes} transition hover:brightness-125 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white`}>
-                {symbol}
-              </a>
-            ) : (
-              <span className={classes} title={name} role="img" aria-label={name}>{symbol}</span>
-            )}
+            <a
+              href={targetUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={name}
+              className={`${classes} transition-all duration-200 hover:scale-110 hover:brightness-125 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white`}
+            >
+              {symbol}
+            </a>
           </li>
         );
       })}
@@ -110,7 +120,9 @@ export function Footer({
         </div>
       </Container>
       <div className="border-t border-white/25">
-        <Container className="py-4 text-xs text-white/80 sm:text-sm">{content.copyright}</Container>
+        <Container className="py-4 text-xs text-white/80 sm:text-sm">
+          {content.copyright}
+        </Container>
       </div>
     </footer>
   );

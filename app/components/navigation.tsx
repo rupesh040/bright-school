@@ -13,13 +13,53 @@ export function Navbar({ content }: { content: HeaderContent }) {
   const home = links[0]?.href ?? "/";
 
   useEffect(() => {
-    function updateHash() {
-      setActive(window.location.hash || home);
+    const navHrefs = links.map((l) => l.href).filter((h) => h.startsWith("#"));
+
+    function updateActiveOnScroll() {
+      // 1. If near top of page, activate home
+      if (window.scrollY < 80) {
+        setActive(home);
+        return;
+      }
+
+      // 2. If scrolled near the very bottom of page, activate last item
+      const isAtBottom =
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 60;
+      if (isAtBottom) {
+        const lastHref = navHrefs[navHrefs.length - 1];
+        if (lastHref) setActive(lastHref);
+        return;
+      }
+
+      // 3. Header height is ~70-80px. Check which section spans the active viewport line
+      let currentSection = home;
+      for (const href of navHrefs) {
+        const id = href.replace(/^#/, "");
+        const element = document.getElementById(id);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 160 && rect.bottom > 80) {
+            currentSection = href;
+            break;
+          }
+          if (rect.top <= 160) {
+            currentSection = href;
+          }
+        }
+      }
+
+      setActive(currentSection);
     }
-    updateHash();
-    window.addEventListener("hashchange", updateHash);
-    return () => window.removeEventListener("hashchange", updateHash);
-  }, [home]);
+
+    updateActiveOnScroll();
+    window.addEventListener("scroll", updateActiveOnScroll, { passive: true });
+    window.addEventListener("hashchange", updateActiveOnScroll);
+
+    return () => {
+      window.removeEventListener("scroll", updateActiveOnScroll);
+      window.removeEventListener("hashchange", updateActiveOnScroll);
+    };
+  }, [links, home]);
 
   return (
     <header
@@ -46,6 +86,7 @@ export function Navbar({ content }: { content: HeaderContent }) {
               key={href}
               href={href}
               aria-current={active === href ? "location" : undefined}
+              onClick={() => setActive(href)}
               className="relative whitespace-nowrap px-0.5 py-2.5 text-[0.82rem] font-bold after:absolute after:inset-x-0 after:bottom-0 after:h-[3px] after:scale-x-0 after:bg-gold after:transition-transform hover:after:scale-x-100 focus-visible:after:scale-x-100 aria-[current=location]:after:scale-x-100 motion-reduce:after:transition-none xl:text-sm"
             >
               {name}
